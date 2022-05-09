@@ -8,8 +8,6 @@ Very much a WIP. Closed source (and for profit.)
 
 ### Pre-Project
 
-- Which frontends/modules/backends should be in the initial release?
-
 - Business model
 
 - Branding
