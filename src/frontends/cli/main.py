@@ -1,9 +1,5 @@
 from modules import Example, Module, Setting
-from termcolor import colored
-from colorama import init
 import time
-
-init()
 
 VERSION = "0.0.1"
 
@@ -59,10 +55,10 @@ def edit_setting(s):
 
 def module_settings():
     # I tried to format the text
-    
     # but it got out of hand
-    
     # so i deleted all of it
+    # sorry
+    
     print("\n")
     print("choose a module:")
     print()
@@ -116,13 +112,9 @@ def menu_press():
 
 def menu():
     print("""
-            ·▄▄▄▄  ▄▄▄ . ▐ ▄ ▄▄▄▄▄
-            ██▪ ██ ▀▄.▀·•█▌▐█•██  
-            ▐█· ▐█▌▐▀▀▪▄▐█▐▐▌ ▐█.▪
-            ██. ██ ▐█▄▄▌██▐█▌ ▐█▌·
-            ▀▀▀▀▀•  ▀▀▀ ▀▀ █▪ ▀▀▀ 
+            dent
             CLI FRONTEND: v%s
-        """ % (VERSION))
+        """ % (str(VERSION)))
 
     print("            [s] start client")
     print("            [k] kill client")
