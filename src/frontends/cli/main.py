@@ -1,7 +1,11 @@
 from modules import Example, Module, Setting
 import time
+import query
 
 VERSION = "0.0.1"
+
+DB_PATH = "../../backends/base/hooks.db"
+q = query.Query(DB_PATH)
 
 MODULES = []
 
@@ -9,23 +13,21 @@ running = False
 
 # whenever you add a module, instantiate it here
 def module_setup():
-    example_module = Example.Example()
-    MODULES.append(example_module)
+    MODULES.append(Example.Example())
     
 # TODO: threading!
 def tick():
     if running:
         for module in MODULES:
-            module.tick()
+            if module.get_state():
+                module.tick()
             time.sleep(0.5)
         
 def start():
     print("Client starting...")
     running = True
     while running:
-        for m in MODULES:
-            m.tick()
-            time.sleep(0.05)
+        tick()
     
 def edit_setting(s):
     obj = s.get_object()
@@ -54,11 +56,6 @@ def edit_setting(s):
 
 
 def module_settings():
-    # I tried to format the text
-    # but it got out of hand
-    # so i deleted all of it
-    # sorry
-    
     print("\n")
     print("choose a module:")
     print()
@@ -78,7 +75,7 @@ def module_settings():
                     if "name:" not in i:
                         print("    " + i)
                                 
-                print()
+                print() 
             selected_setting = input("").lower()
             print()
             for s in m.get_settings():
@@ -93,6 +90,7 @@ def global_settings():
     
 def kill_client():
     print("killing client...")
+    print("deleting database...")
     exit()
      
      

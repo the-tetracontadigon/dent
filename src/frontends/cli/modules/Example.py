@@ -1,4 +1,8 @@
 from modules import Module
+import sys
+sys.path.append("../")
+import query
+from utils import debug, error
 
 class Example(Module.Module):
     
@@ -13,10 +17,14 @@ class Example(Module.Module):
             "interval": 1,
             "value": 2
         })
+        
+
+        self.q = query.Query("../../backends/base/hooks.db")
+        self.state = True
     
     def on_tick(self):
-        print("hi")
-    
+        print(self.q.get_hook_value("pos"))
+
     def on_enable(self):
         print("i got enabled :)")
     

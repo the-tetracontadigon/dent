@@ -1,9 +1,11 @@
-from . import api as api
+from utils import debug, error
 
 class Hook:
     
     def __init__(self, name, type):
         
+        self.name = name
+
         #types: int, str, arr, obj
         self.type = type
         
@@ -19,9 +21,11 @@ class Hook:
             self.type == "str"
             self.value = ""
         
-        self.data = {}
+        # self.data = {}
         
-    
+    def get_name(self):
+        return self.name
+
     def get_type(self):
         return self.type
 
@@ -35,7 +39,8 @@ class Hook:
         """
         returns current value
         """
-        on_get()
+        self.on_get()
+        debug(self.name + " GET: " + str(self.value))
         return self.value
     
     def on_set(self):
@@ -45,13 +50,12 @@ class Hook:
         """
         sets current value to value param
         """
-        self.data = api.get_data_obj()
-        self.data[self.name] = value
+        import fast as api
+        # self.data = api.get_data_obj()
+        # self.data[self.name] = value
+        # self.value = value
+        # api.set_data_obj(self.data)
+
         self.value = value
-        api.set_data_obj(self.data)
-        on_set()
-    
-    def listen(self, data):
-        if data[self.name] != self.value:
-            self.value = data[self.name]
-        
+        self.on_set()
+        debug(self.name + " SET: " + str(self.value))
