@@ -2,7 +2,7 @@
 
 > Ghost mode loading...
 
-Very much a WIP. Closed source (and for profit.)
+Very much a WIP. Closed source (as of now.)
 
 ## MVP Roadmap
 
