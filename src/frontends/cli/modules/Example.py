@@ -20,10 +20,12 @@ class Example(Module.Module):
         
 
         self.q = query.Query("../../backends/base/hooks.db")
-        self.state = True
+        self.enable()
     
     def on_tick(self):
+        print("hi")
         print(self.q.get_hook_value("pos"))
+        self.q = query.Query("../../backends/base/hooks.db")
 
     def on_enable(self):
         print("i got enabled :)")

@@ -47,22 +47,23 @@ class Module:
         return 0
     
     def tick(self):
-        for s in self.settings:
-            obj = s.get_object()
-            if obj["type"] == "int":
-                if obj["value"] < obj["min"]:
-                    obj["value"] = obj["min"]
-                    self.debug_msg("value can't be below min, fixing (%s : %s)" % (self.get_name(), obj["name"]))
-                elif obj["value"] > obj["max"]:
-                    obj["value"] = obj["max"]
-                    self.debug_msg("value can't be above max, fixing (%s : %s)" % (self.get_name(), obj["name"]))
-                    
-                if obj["max"] == obj["min"]:
-                    obj["max"] += obj["increment"]
-                    self.debug_msg("max can't == min, fixing (%s : %s)" % (self.get_name(), obj["name"]))
-                    
-        self.on_tick()
-        self.debug_msg("%s ticked" % self.name)
+        if self.state:
+            for s in self.settings:
+                obj = s.get_object()
+                if obj["type"] == "int":
+                    if obj["value"] < obj["min"]:
+                        obj["value"] = obj["min"]
+                        self.debug_msg("value can't be below min, fixing (%s : %s)" % (self.get_name(), obj["name"]))
+                    elif obj["value"] > obj["max"]:
+                        obj["value"] = obj["max"]
+                        self.debug_msg("value can't be above max, fixing (%s : %s)" % (self.get_name(), obj["name"]))
+                        
+                    if obj["max"] == obj["min"]:
+                        obj["max"] += obj["increment"]
+                        self.debug_msg("max can't == min, fixing (%s : %s)" % (self.get_name(), obj["name"]))
+                        
+            self.on_tick()
+            self.debug_msg("%s ticked" % self.name)
         
     def get_state(self):
         return self.state

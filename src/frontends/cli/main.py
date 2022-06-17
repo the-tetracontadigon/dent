@@ -17,17 +17,16 @@ def module_setup():
     
 # TODO: threading!
 def tick():
-    if running:
-        for module in MODULES:
-            if module.get_state():
-                module.tick()
-            time.sleep(0.5)
+    for module in MODULES:
+        if module.get_state():
+            module.tick()
         
 def start():
     print("Client starting...")
     running = True
     while running:
         tick()
+        time.sleep(1)
     
 def edit_setting(s):
     obj = s.get_object()

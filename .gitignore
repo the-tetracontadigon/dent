@@ -171,3 +171,10 @@ replay_pid*
 data.json
 sql.db
 hooks.db
+
+# fabric
+.gradle/
+.idea/
+gradle/
+build/
+
