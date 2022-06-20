@@ -3,23 +3,23 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Dent Client",
+  "description": "Ghost mode <<off>>",
   "authors": [
-    "Me!"
+    "Whop42"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://the-tetracontadigon.github.io",
+    "sources": "https://github.com/the-tetracontadigon/dent"
   },
 
-  "license": "CC0-1.0",
+  "license": "All Rights Reserved",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "dent.backends.base.BaseJava"
     ]
   },
   "mixins": [
@@ -33,6 +33,6 @@
     "java": ">=17"
   },
   "suggests": {
-    "another-mod": "*"
+
   }
 }

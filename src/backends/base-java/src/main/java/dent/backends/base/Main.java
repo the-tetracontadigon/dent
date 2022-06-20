@@ -6,6 +6,6 @@ public class Main {
     public static void main(String[] args) {
         // Setup
 
-        ArrayList<> hooks = new ArrayList();
+        // ArrayList<> hooks = new ArrayList();
     }
 }
