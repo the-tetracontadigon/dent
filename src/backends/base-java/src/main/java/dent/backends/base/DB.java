@@ -29,6 +29,7 @@ public class DB {
                 jsonStr = jsonStr.concat(s.nextLine());
             }
         }
+
         this.utils.debug("read " + jsonStr + " from " + this.path);
         return new JSONObject(jsonStr);
     }
@@ -37,12 +38,11 @@ public class DB {
         this.json = new JSONObject();
         try {
             this.f = new File(this.path);
-            if(!f.createNewFile()) {
-                this.utils.error("file " + this.path + " already exists.");
-            }
+            f.getParentFile().mkdirs();
+            f.createNewFile();
             this.json = this.read(f);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.utils.error("db file not found (load)");
         }
     }
 
@@ -53,7 +53,7 @@ public class DB {
             fw.write(json.toString());
             fw.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.utils.error("db file not found (dump)");
         }
     }
 

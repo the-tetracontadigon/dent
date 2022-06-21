@@ -3,6 +3,7 @@ package dent.backends.base;
 import dent.backends.base.DB;
 import dent.backends.base.Utils;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Query {
@@ -11,7 +12,7 @@ public class Query {
     private final Utils utils;
 
     public Query() {
-        this.db = new DB(System.getProperty("user.home") + "/.dent/db.db");
+        this.db = new DB(System.getProperty("user.home") + "/.dent/hooks.db");
         db.load();
         this.utils = new Utils();
     }

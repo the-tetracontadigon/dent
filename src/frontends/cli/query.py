@@ -1,10 +1,11 @@
-import pickledb
+import pickledb, os
 from utils import debug, error
 
 class Query:
 
-    def __init__(self, path):
-        self.db = pickledb.load(path, True)
+    def __init__(self):
+        self.db = pickledb.load(os.environ["HOME"] + "/.dent/hooks.db", True)
+        print(self.db.get("Pos"))
     
     def get_hook_value(self, name):
         """ Returns value from the database given a name """

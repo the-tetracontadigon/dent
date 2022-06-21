@@ -1,11 +1,11 @@
 from modules import Example, Module, Setting
 import time
 import query
+import os
 
 VERSION = "0.0.1"
 
-DB_PATH = "../../backends/base/hooks.db"
-q = query.Query(DB_PATH)
+q = query.Query()
 
 MODULES = []
 
@@ -26,7 +26,7 @@ def start():
     running = True
     while running:
         tick()
-        time.sleep(1)
+        time.sleep(0.2)
     
 def edit_setting(s):
     obj = s.get_object()

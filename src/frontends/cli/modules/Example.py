@@ -1,5 +1,5 @@
 from modules import Module
-import sys
+import sys, os
 sys.path.append("../")
 import query
 from utils import debug, error
@@ -19,13 +19,27 @@ class Example(Module.Module):
         })
         
 
-        self.q = query.Query("../../backends/base/hooks.db")
+        self.q = query.Query()
         self.enable()
     
     def on_tick(self):
         print("hi")
-        print(self.q.get_hook_value("pos"))
-        self.q = query.Query("../../backends/base/hooks.db")
+        pos = self.q.get_hook_value("Pos")
+        pos = str(pos).replace("[", "")
+        pos = pos.replace("]", "")
+        pos = pos.split(",")
+
+        print(pos[1])
+
+        x = float(pos[0])
+        y = float(pos[1])
+        z = float(pos[2])
+        
+        y += 0.1
+
+        self.q.set_hook_value("pos", [x, y, z])
+
+        self.q = query.Query()
 
     def on_enable(self):
         print("i got enabled :)")
