@@ -21,25 +21,29 @@ class Example(Module.Module):
 
         self.q = query.Query()
         self.enable()
+        self.tick_counter = 0
     
     def on_tick(self):
-        print("hi")
-        pos = self.q.get_hook_value("Pos")
-        pos = str(pos).replace("[", "")
-        pos = pos.replace("]", "")
-        pos = pos.split(",")
+        # self.tick_counter += 1
+        # pos = self.q.get_hook_value("Pos")
+        # pos = pos.split("|")[0]
+        # pos = str(pos).replace("(", "")
+        # pos = pos.replace(")", "")
+        # pos = pos.replace("[", "")
+        # pos = pos.replace("]", "")
+        # pos = pos.split(",")
 
-        print(pos[1])
-
-        x = float(pos[0])
-        y = float(pos[1])
-        z = float(pos[2])
+        # x = float(pos[0])
+        # y = float(pos[1])
+        # z = float(pos[2])
         
-        y += 0.1
+        # x = 0
+        # if self.tick_counter % 10 == 0:
+        #     y += 1
+        # z = 0
 
-        self.q.set_hook_value("pos", [x, y, z])
-
-        self.q = query.Query()
+        # self.q.set_hook_value("Pos", str([x, y, z]).replace("[", "(").replace("]", ")") + "|front")
+        self.q.set_hook_value("Pos", "(0,0,0)|front")
 
     def on_enable(self):
         print("i got enabled :)")

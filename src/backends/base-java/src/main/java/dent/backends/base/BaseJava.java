@@ -19,6 +19,7 @@ public class BaseJava implements ModInitializer {
     @Override
     public void onInitialize() {
         hooks = new ArrayList<>();
+        hooks.add(new GameInfo());
         hooks.add(new Pos());
 
         hm = new HookManager(hooks);

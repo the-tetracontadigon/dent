@@ -2,11 +2,16 @@ package dent.backends.base;
 
 import dent.backends.base.Utils;
 
+import java.util.Objects;
+
 public class Hook {
 
     protected String name;
     protected String value;
     protected Utils utils;
+
+    protected String oldLocal;
+    protected String oldDB;
     public Hook(String name) {
         this.name = name;
         this.value = "";
@@ -17,8 +22,7 @@ public class Hook {
         return this.name;
     }
 
-    public void onGet() {
-    }
+    public void onGet() {}
 
     public String get() {
         this.onGet();
@@ -26,13 +30,13 @@ public class Hook {
         return this.value;
     }
 
-    public void onSet() {
-
+    public String onSet(String value) {
+        return value;
     }
 
     public void set(String value) {
-        this.value = value;
-        this.onSet();
-        this.utils.debug(this.name + " SET: " + this.value);
+        //this.value = value;
+        this.utils.debug(this.name + " SET: " + value);
+        this.value = this.onSet(value);
     }
 }

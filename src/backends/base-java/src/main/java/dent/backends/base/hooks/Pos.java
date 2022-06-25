@@ -4,57 +4,40 @@ import dent.backends.base.Hook;
 import dent.backends.base.Query;
 import dent.backends.base.BaseJava;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.math.Vec3d;
 
 public class Pos extends dent.backends.base.Hook {
 
-    private Query q;
-
-    private double x;
-    private double y;
-    private double z;
+    private String[] valueList = new String[2];
 
     private MinecraftClient mc;
 
     public Pos() {
         super("Pos");
         this.mc = MinecraftClient.getInstance();
-        this.q = new Query();
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
-        this.value = valueFormat();
+
+        this.value = "(0.0,0.0,0.0)|back";
+
     }
 
     @Override
     public void onGet() {
         super.onGet();
         if(mc.player != null && mc.currentScreen == null) {
-            //System.out.println("SCREEN" + mc.currentScreen.toString());
-            this.x = mc.player.getX();
-            this.y = mc.player.getY();
-            this.z = mc.player.getZ();
-            this.value = valueFormat();
+            this.value = mc.player.getPos().toString();
         }
     }
 
-    private String valueFormat() {
-        return "[" + x + "," + y + "," + z + "]";
-    }
-
-    private void valueUnformat(String formatted) {
-        String unformatted = "";
-        unformatted = formatted.replace(" ", "");
-        unformatted = unformatted.replace("[", "");
-        unformatted = unformatted.replace("]", "");
-        char[] unformattedChar = unformatted.toCharArray();
-        this.x = unformattedChar[0];
-        this.y = unformattedChar[1];
-        this.z = unformattedChar[2];
-    }
-
     @Override
-    public void onSet() {
-        super.onSet();
-        valueUnformat(this.value);
+    public String onSet(String value) {
+        //super.onSet(value);
+        //if(Math.abs(Double.parseDouble(this.value.replace("(", "").split(",")[0]) - Double.parseDouble(value.replace("(", "").split(",")[0])) > 0.5)
+        this.valueList = value.replace("(", "").replace(")", "").split(",");
+
+        if (mc.player != null) {
+            mc.player.setPosition(new Vec3d(Double.parseDouble(this.valueList[0]), Double.parseDouble(this.valueList[1]), Double.parseDouble(this.valueList[2])));
+        }
+
+        return this.get();
     }
 }

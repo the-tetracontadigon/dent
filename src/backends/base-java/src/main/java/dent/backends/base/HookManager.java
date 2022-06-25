@@ -39,10 +39,26 @@ public class HookManager {
     }
 
     public void tick() {
+        //if in game
         if(mc.player != null && mc.currentScreen == null) {
             for (Hook h : hooks) {
-                this.q.setHookValue(h.getName(), h.get());
-                this.utils.debug(h.getName() + " ticked!");
+                String dbValue = this.q.getHookValue(h.getName());
+                String lValue = h.get();
+
+                //if async
+                if(!Objects.equals(lValue, dbValue) ) {
+                    //if db value is from frontend
+                    if(Objects.equals(dbValue.split("\\|")[dbValue.split("\\|").length - 1], "front")) {
+                        //set local value to db value - "|front"
+                        h.set(dbValue.replace("|front", ""));
+                    }
+                    //lValue = h.get();
+
+                    //System.out.println(Double.parseDouble(lValue.replace("(", "").split(",")[0]) - Double.parseDouble(dbValue.replace("(", "").split(",")[0]));
+
+                    //update
+                    this.q.setHookValue(h.getName(), lValue);
+                }
             }
         }
     }

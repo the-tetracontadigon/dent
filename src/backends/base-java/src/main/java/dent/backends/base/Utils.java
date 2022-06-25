@@ -6,12 +6,17 @@ import java.util.logging.Logger;
 public class Utils {
 
     private final static Logger LOGGER = Logger.getLogger("Dent");
+    public final boolean debug = true;
 
     public void debug(String message) {
-        System.out.println("[DEBUG]: " + message);
+        if(debug) {
+            System.out.println("[DEBUG]: " + message);
+        }
     }
 
     public void error(String message) {
-        System.out.println("[ERROR]: " + message);
+        if(debug) {
+            System.out.println("[ERROR]: " + message);
+        }
     }
 }

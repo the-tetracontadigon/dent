@@ -1,5 +1,6 @@
 package dent.backends.base;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -30,8 +31,13 @@ public class DB {
             }
         }
 
-        this.utils.debug("read " + jsonStr + " from " + this.path);
-        return new JSONObject(jsonStr);
+        //this.utils.debug("read " + jsonStr + " from " + this.path);
+        try {
+            return new JSONObject(jsonStr);
+        } catch(JSONException e) {
+            this.utils.error(jsonStr + e.getMessage());
+            return json;
+        }
     }
 
     public void load() {

@@ -26,7 +26,7 @@ def start():
     running = True
     while running:
         tick()
-        time.sleep(0.2)
+        time.sleep(0.15)
     
 def edit_setting(s):
     obj = s.get_object()

@@ -1,28 +1,20 @@
 package dent.backends.base;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.math.Vec3d;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        File f = new File(System.getProperty("user.home") + "/.dent/hooks.db");
-        System.out.println(f.getAbsolutePath());
-        f.getParentFile().mkdirs();
-        f.createNewFile();
+    public static void main(String[] args) {
+        Vec3d vd = new Vec3d(1, 2, 3);
 
-        Scanner s = new Scanner(f);
-        System.out.println(s.nextLine());
-
-        FileWriter fw = new FileWriter(f);
-        fw.write("{}");
-        fw.close();
-
-        s = new Scanner(f);
-        System.out.println(s.nextLine());
-
-
+        System.out.println(vd.toString().replace("(", "").replace(")", "").split(",")[0]);
     }
+
 }

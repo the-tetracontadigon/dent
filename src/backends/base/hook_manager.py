@@ -1,4 +1,4 @@
-import Hook
+    import Hook
 from hooks import Pos
 import query
 import time
@@ -25,7 +25,7 @@ class HookManager:
         
         while not shutdown:
             try:
-                self.tick(0.1)
+                self.tick(0.2)
             except:
                 debug("Stopping...")
                 exit()
