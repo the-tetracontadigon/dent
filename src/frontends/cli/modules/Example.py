@@ -24,26 +24,11 @@ class Example(Module.Module):
         self.tick_counter = 0
     
     def on_tick(self):
-        # self.tick_counter += 1
-        # pos = self.q.get_hook_value("Pos")
-        # pos = pos.split("|")[0]
-        # pos = str(pos).replace("(", "")
-        # pos = pos.replace(")", "")
-        # pos = pos.replace("[", "")
-        # pos = pos.replace("]", "")
-        # pos = pos.split(",")
+        sprint = self.q.get_hook_value("Sprint")
+        print(sprint)
 
-        # x = float(pos[0])
-        # y = float(pos[1])
-        # z = float(pos[2])
-        
-        # x = 0
-        # if self.tick_counter % 10 == 0:
-        #     y += 1
-        # z = 0
-
-        # self.q.set_hook_value("Pos", str([x, y, z]).replace("[", "(").replace("]", ")") + "|front")
-        self.q.set_hook_value("Pos", "(0,0,0)|front")
+        if not "front" in sprint and str(sprint).removesuffix("|front") == "false":
+            self.q.set_hook_value("Sprint", "true|front")
 
     def on_enable(self):
         print("i got enabled :)")

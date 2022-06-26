@@ -13,20 +13,19 @@ import net.minecraft.client.MinecraftClient;
 public class BaseJava implements ModInitializer {
 
     private HookManager hm;
-    private ArrayList<Hook> hooks;
-    public MinecraftClient mc = MinecraftClient.getInstance();
 
     @Override
     public void onInitialize() {
-        hooks = new ArrayList<>();
+        ArrayList<Hook> hooks = new ArrayList<>();
         hooks.add(new GameInfo());
         hooks.add(new Pos());
+        hooks.add(new Sprint());
+        hooks.add(new Sneak());
+        hooks.add(new Swim());
 
         hm = new HookManager(hooks);
 
-        ClientTickEvents.START_CLIENT_TICK.register((tick) -> {
-            hm.tick();
-        });
+        ClientTickEvents.END_CLIENT_TICK.register((mc) -> hm.tick());
 
     }
 }

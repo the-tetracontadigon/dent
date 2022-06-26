@@ -11,18 +11,16 @@ import net.minecraft.client.MinecraftClient;
 public class HookManager {
 
     public ArrayList<Hook> hooks;
-    private Query q;
+    private final Query q;
     private boolean shutdown;
-    private Utils utils;
 
-    private MinecraftClient mc;
+    private final MinecraftClient mc;
 
     public HookManager(ArrayList<Hook> hooks) {
         this.hooks = hooks;
         this.mc = MinecraftClient.getInstance();
-        this.shutdown = false;
         this.q = new Query();
-        this.utils = new Utils();
+        Utils utils = new Utils();
 
         for(Hook h : hooks) {
             this.q.setHookValue(h.getName(), h.get());
