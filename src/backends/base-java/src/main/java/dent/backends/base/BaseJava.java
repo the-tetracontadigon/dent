@@ -23,7 +23,7 @@ public class BaseJava implements ModInitializer {
         hooks.add(new Sneak());
         hooks.add(new Swim());
         hooks.add(new Inventory());
-        //hooks.add(new Facing());
+        hooks.add(new Facing());
 
         hm = new HookManager(hooks);
 

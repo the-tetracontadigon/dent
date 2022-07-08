@@ -3,6 +3,7 @@ package dent.backends.base;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.hit.BlockHitResult;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -27,6 +28,10 @@ public class Utils {
     }
 
     public String entityToString(LivingEntity entity) {
-        return entity.getEntityName() + " : " + entity.getPos().toString() + " : " + Float.toString(entity.getHealth()) + " : " + entity.getActiveItem().toString();
+        return entity.getType().getName().getString() + " : " + entity.getPos().toString() + " : " + Float.toString(entity.getHealth()) + " : " + entity.getActiveItem().toString();
+    }
+
+    public String blockToString(BlockHitResult b) {
+        return b.toString();
     }
 }

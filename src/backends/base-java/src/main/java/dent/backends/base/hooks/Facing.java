@@ -32,7 +32,10 @@ public class Facing extends dent.backends.base.Hook {
                     this.value = this.utils.entityToString(lTarget);
                 }
             } else if(mc.crosshairTarget.getType() == HitResult.Type.BLOCK) {
-                this.value
+                BlockHitResult bTarget = ((BlockHitResult) mc.crosshairTarget);
+                this.value = bTarget.getPos().toString() + " : " + bTarget.getSide().toString();
+            } else {
+                this.value = "none";
             }
         }
     }
