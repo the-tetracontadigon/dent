@@ -1,15 +1,15 @@
 # Hooks for Implementation
 
-- Get/set position
+- [X] Get/set position
 
-- move w/ wasd, jump, crouch
+- [ ] move w/ wasd, jump, crouch
 
-- get block pointing at
+- [ ] get block pointing at
 
-- move mouse
+- [ ] move mouse
 
-- get coords, facing
+- [X] get coords, facing
 
-- get inventory (in object/dict)
+- [X] get inventory (in object/dict)
 
-- get players around (object/dict with locations, health, facing)
+- [ ] get players around (object/dict with locations, health, facing)
